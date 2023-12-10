@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+  server1:
+    image: yxnan/l4d2-runner:latest
+    container_name: l4d2-server1
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+    environment:
+      MAP: c2m1_highway
+      PORT: 27015
+      LOG: off
+      CONFIG: server.cfg
+      TICKRATE: 60
+    volumes:
+      - ../game:/L4D2
+      - ../org/my-org/comm/addons:/L4D2/left4dead2/addons
+      - ../org/my-org/comm/downloads:/L4D2/left4dead2/downloads
+      - ../org/my-org/comm/ems:/L4D2/left4dead2/ems
+      - ../org/my-org/comm/cfg_comm:/L4D2/left4dead2/cfg/comm
+      - ../org/my-org/profiles/server1/server.cfg:/L4D2/left4dead2/cfg/server.cfg
+      - ../org/my-org/profiles/server1/cfg_sourcemod:/L4D2/left4dead2/cfg/sourcemod
+      - ../org/my-org/profiles/server1/sourcemod/data:/L4D2/left4dead2/addons/sourcemod/data
+      - ../org/my-org/profiles/server1/sourcemod/logs:/L4D2/left4dead2/addons/sourcemod/logs
+      - ../org/my-org/profiles/server1/sourcemod/plugins_custom:/L4D2/left4dead2/addons/sourcemod/plugins/custom
+      - ../org/my-org/profiles/server1/sourcemod/translations:/L4D2/left4dead2/addons/sourcemod/translations
+
+  server2:
+    image: yxnan/l4d2-runner:latest
+    container_name: l4d2-server2
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "27016:27016/tcp"
+      - "27016:27016/udp"
+    environment:
+      MAP: c2m1_highway
+      PORT: 27016
+      LOG: off
+      CONFIG: server.cfg
+      TICKRATE: 60
+    volumes:
+      - ../game:/L4D2
+      - ../org/my-org/comm/addons:/L4D2/left4dead2/addons
+      - ../org/my-org/comm/downloads:/L4D2/left4dead2/downloads
+      - ../org/my-org/comm/ems:/L4D2/left4dead2/ems
+      - ../org/my-org/comm/cfg_comm:/L4D2/left4dead2/cfg/comm
+      - ../org/my-org/profiles/server2/server.cfg:/L4D2/left4dead2/cfg/server.cfg
+      - ../org/my-org/profiles/server2/cfg_sourcemod:/L4D2/left4dead2/cfg/sourcemod
+      - ../org/my-org/profiles/server2/sourcemod/data:/L4D2/left4dead2/addons/sourcemod/data
+      - ../org/my-org/profiles/server2/sourcemod/logs:/L4D2/left4dead2/addons/sourcemod/logs
+      - ../org/my-org/profiles/server2/sourcemod/plugins_custom:/L4D2/left4dead2/addons/sourcemod/plugins/custom
+      - ../org/my-org/profiles/server2/sourcemod/translations:/L4D2/left4dead2/addons/sourcemod/translations
+
+  vpk_trimmer:
+    container_name: vpk-trimmer
+    image: yxnan/l4d2-vpk-trimmer:latest
+    profiles:
+      - optional
+    volumes:
+      - ../org/my-org/upload:/in
+      - ../org/my-org/comm/addons:/out
+
