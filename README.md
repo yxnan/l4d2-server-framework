@@ -7,7 +7,7 @@ This repo provides a framework to build a multi-instance L4D2 server clusters.
 1. [Rationale](#Rationale)
 2. [Brief](#Brief)
 3. [Setup](#Setup)
-4. [Custom hierarchy](#Custom hierarchy)
+4. [Custom hierarchy](#Custom-hierarchy)
 5. [Todos](#Todos)
 
 # Rationale
@@ -55,15 +55,15 @@ Here is the graph showing how they are structured and mounted as a docker volume
 └── org
     ├── my-org
     │   ├── comm
-    │   │   ├── <a href="org/my-org/comm/addons/README.txt">addons</a>    ->  /L4D2/left4dead2/addons (install custom campaigns, sourcemods etc. here)
-    │   │   ├── <a href="org/my-org/comm/cfg_comm/README.txt">cfg_comm</a>  ->  /L4D2/left4dead2/cfg/comm (some reusable configs by profiles)
-    │   │   ├── <a href="org/my-org/comm/downloads/README.txt">downloads</a> ->  /L4D2/left4dead2/downloads
-    │   │   └── <a href="org/my-org/comm/ems/README.txt">ems</a>       ->  /L4D2/left4dead2/ems
+    │   │   ├── <a href="versatile-l4d2-docker/tree/main/org/my-org/comm/addons/">addons</a>    ->  /L4D2/left4dead2/addons (install custom campaigns, sourcemods etc. here)
+    │   │   ├── <a href="versatile-l4d2-docker/tree/main/org/my-org/comm/cfg_comm/">cfg_comm</a>  ->  /L4D2/left4dead2/cfg/comm (some reusable configs by profiles)
+    │   │   ├── <a href="versatile-l4d2-docker/tree/main/org/my-org/comm/downloads/">downloads</a> ->  /L4D2/left4dead2/downloads
+    │   │   └── <a href="versatile-l4d2-docker/tree/main/org/my-org/comm/ems/">ems</a>       ->  /L4D2/left4dead2/ems
     │   └── profiles
     │       ├── server1
-    │       │   ├── <a href="org/my-org/profiles/server1/cfg_sourcemod/README.txt">cfg_sourcemod</a>  ->  /L4D2/left4dead2/cfg/sourcemod (all the plugins' config files)
-    │       │   ├── <a href="org/my-org/profiles/server1/server.cfg">server.cfg</a>     ->  /L4D2/left4dead2/cfg/server.cfg
-    │       │   └── <a href="org/my-org/profiles/server1/sourcemod/README.txt">sourcemod</a>
+    │       │   ├── <a href="versatile-l4d2-docker/tree/main/org/my-org/profiles/server1/cfg_sourcemod/">cfg_sourcemod</a>  ->  /L4D2/left4dead2/cfg/sourcemod (all the plugins' config files)
+    │       │   ├── <a href="versatile-l4d2-docker/tree/main/org/my-org/profiles/server1/server.cfg">server.cfg</a>     ->  /L4D2/left4dead2/cfg/server.cfg
+    │       │   └── <a href="versatile-l4d2-docker/tree/main/org/my-org/profiles/server1/sourcemod/">sourcemod</a>
     │       │       ├── data              ->  /L4D2/left4dead2/addons/sourcemod/data
     │       │       ├── gamedata          ->  /L4D2/left4dead2/addons/sourcemod/gamedata
     │       │       ├── logs              ->  /L4D2/left4dead2/addons/sourcemod/logs
@@ -146,7 +146,7 @@ Voilà! You can start your server by `docker compose -f run/docker-compose-myorg
 Optionally, if you want to utilise the `vpk-trimmer`,
 you can pass additional args `--profile optional` to docker compose.
 See more about [yxnan/l4d2-vpk-trimmer](https://github.com/yxnan/l4d2-vpk-trimmer)
-and [upload/README.txt](org/my-org/upload/README.txt).
+and [upload/README.txt](org/my-org/upload/).
 
 Create a new org is needed when your friends also want to host their server
 on your machine, and they prefer a vastly different setup from yours, so you can't
@@ -174,12 +174,12 @@ Interestingly we can have a shared `plugins` and a profile-specific one,
 because unlike the other directories,
 sourcemod will recursively find every smx files under `plugins` and load them,
 so this enables us to create separate subdirectory for our profile-specific plugins.
-See more in [org-sourcemod](org/my-org/comm/addons/sourcemod/README.txt)
-and [profile-sourcemod](org/my-org/profiles/server1/cfg_sourcemod/README.txt).
+See more in [org-sourcemod](org/my-org/comm/addons/sourcemod/)
+and [profile-sourcemod](org/my-org/profiles/server1/sourcemod/).
 
 
 # Todos
 
 1. Add a docker service for cleaning `downloads` routinely.
-Close [downloads/README.txt](org/my-org/comm/downloads/README.txt)
+Close [downloads/README.txt](org/my-org/comm/downloads/)
 2. Add a `backup-org.sh` script.
